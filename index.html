@@ -250,12 +250,25 @@
           Iniciar sesión
         </button>
       </form>
-      <form action="views/auth/register.php">
-        <div>
-          <button class="btn btn-outline-secondary w-100 py-2" type="submit">
-            Regístrate
-          </button>
+      <form action="views/auth/register.php" method="POST" class="mt-3">
+        <h1 class="h3 mb-3 fw-normal">Regístrate</h1>
+        
+        <div class="form-floating">
+          <input type="text" class="form-control" id="registerUsername" name="username" placeholder="Nombre de usuario" required />
+          <label for="registerUsername">Nombre de usuario</label>
         </div>
+        
+        <div class="form-floating">
+          <input type="email" class="form-control" id="registerEmail" name="email" placeholder="name@example.com" required />
+          <label for="registerEmail">Email</label>
+        </div>
+        
+        <div class="form-floating">
+          <input type="password" class="form-control" id="registerPassword" name="password" placeholder="Contraseña" required />
+          <label for="registerPassword">Contraseña</label>
+        </div>
+    
+        <button class="btn btn-outline-secondary w-100 py-2" type="submit">Regístrate</button>
       </form>
     </main>
     <script

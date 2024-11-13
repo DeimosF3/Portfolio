@@ -1,68 +1,42 @@
 <?php
 session_start();
-
-$_SESSION['user_id'] = $_SESSION['user_id'];
+require_once __DIR__ . '/../../config/database.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-// Configuración de la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "mi_portfolio";
 
-// Crear conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-// Comprobar conexión
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-}
+    $username = $_POST['username'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-// Recibir datos del formulario de registro
-$user = $_POST['username'];
-$email = $_POST['email'];
-$pass = password_hash($_POST['password'], PASSWORD_BCRYPT); // Hash de la contraseña
 
-// Insertar datos del usuario en la tabla `users`
-$sql = "INSERT INTO users (username, email, password) VALUES ('$user', '$email', '$pass')";
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-if ($conn->query($sql) === TRUE) {
-    echo "Usuario registrado correctamente";
-    
-    // -----------------------------------------------------------------------
 
-    $sqll = "SELECT id, password FROM users WHERE email = '$email'";
-    $result = $conn->query($sqll);
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $_SESSION['user_id'] = $row['id'];
+    $database = new Database();
+    $conn = $database->connect();
 
-        if (password_verify($password, $row['password'])) {
-             // Guardar datos en la sesión y redirigir al formulario de portafolio
-            header("Location: portfolio_form.php");
+
+    if ($conn) {
+
+        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $hashed_password);
+
+        if ($stmt->execute()) {
+          
+            $_SESSION['user_id'] = $conn->lastInsertId();
+            header("Location: ./portfolio_form.php");
             exit();
         } else {
-            echo "Contraseña incorrecta";
+            echo "Error al registrar el usuario";
         }
     } else {
-        echo "No se encontró una cuenta con ese correo electrónico";
+        echo "No se pudo conectar a la base de datos";
     }
-
-    // -------------------------------------------------------------------------
-
-    header("Location: portfolio_form.php"); // Redirige al login después del registro
-    exit();
-} else {
-    echo "Error al registrar usuario: " . $conn->error;
 }
-
-// ------------------------------------------------------
-
-
-
-// ------------------------------------------------------
-
-$conn->close();
 ?>
