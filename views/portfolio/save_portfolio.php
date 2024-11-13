@@ -39,7 +39,7 @@ echo $sql;
 
 if ($conn->query($sql) === true) {
     echo "Portafolio guardado correctamente";
-    header("Location: view_portfolio.php");
+    header("Location: ../../views/portfolio/view_portfolio.php");
     exit();
 } else {
     echo "Error al guardar portafolio: " . $conn->error;

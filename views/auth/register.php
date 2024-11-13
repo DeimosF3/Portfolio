@@ -1,10 +1,11 @@
 <?php
 session_start();
-require_once __DIR__ . '/../../config/database.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+require_once '../../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -30,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->execute()) {
           
             $_SESSION['user_id'] = $conn->lastInsertId();
-            header("Location: ./portfolio_form.php");
+            header("Location: ../../views/portfolio/portfolio_form.php");
             exit();
         } else {
             echo "Error al registrar el usuario";

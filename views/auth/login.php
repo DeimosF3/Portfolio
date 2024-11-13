@@ -29,14 +29,14 @@ if ($result->num_rows > 0) {
     $_SESSION['user_id'] = $row['id'];
 
     if (password_verify($password, $row['password'])) {
-        header("Location: portfolio_form.php");
+        header("Location: ../../views/portfolio/portfolio_form.php");
         exit();
     } else {
         echo "Contraseña incorrecta";
     }
 } else {
     echo "No se encontró una cuenta con ese correo electrónico";
-    header("Location: register.php");
+    header("Location: ../../index.html");
     exit();
 }
 
