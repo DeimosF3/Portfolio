@@ -1,12 +1,11 @@
--- Active: 1730713639509@@127.0.0.1@3306@mi_portfolio
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-11-2024 a las 22:21:28
+-- Tiempo de generación: 18-11-2024 a las 12:06:19
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -55,10 +54,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
-(1, '', '', '$2y$10$mIiQvVkzsosKfH1mYJwtMufn7TkrRMCOD8ymZGKTmkL3rNzEPO3Oy'),
-(5, 'rodri', 'haha@gmail.com', '$2y$10$niMpG4vYhvv7a7I6sRln7.DKss2Tjca9zwouZsFFMT0xcDTfLZOXa'),
-(10, 'pepe', 'pepe@gmail.com', '$2y$10$xvVwW8l1eg7NJwAvlZit8uMC38VsYghL7Lkr6VKU1f9ov1Cpp5kH2'),
-(11, 'sape', 'sape@gmail.com', '$2y$10$iPK2YKCtV6sSfoL.Dfn4V.N6glFV1ZrM65c1YdZEWDf.QTkcrQzD.');
+(1, 'roodri', 'roodri@gmail.com', '$2y$10$om1WAlSS3ddlGfX5ur2DH.B5CWqrNymxfI8SQsSZrPwg.jvGyb4Qu');
 
 --
 -- Índices para tablas volcadas
@@ -92,7 +88,7 @@ ALTER TABLE `portfolio`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -108,4 +104,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
