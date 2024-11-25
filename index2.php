@@ -93,6 +93,7 @@ require_once 'config/database.php';
 </head>
 
 <body>
+
     <main class="form-signin w-100 m-auto">
         <form action="views/auth/register.php" method="POST" class="mt-3">
             <h1 class="h3 mb-3 fw-normal">Regístrate</h1>
