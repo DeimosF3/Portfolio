@@ -59,12 +59,12 @@ require_once 'config/database.php';
     <main class="form-signin">
       <form action="index.html" method="POST">
         <h1 class="h3 mb-3 fw-normal">Bienvenido!</h1>
-        <button class="btn btn-primary w-100 py-2" type="submit">
+        <button class="btn btn-primary w-100 py-2" type="submit" onclick="">
           Iniciar sesión
         </button>
       </form>
       <form action="index2.php" method="POST" class="mt-3">
-        <button class="btn btn-outline-secondary w-100 py-2" type="submit">
+        <button class="btn btn-outline-secondary w-100 py-2" type="submit" onclick="">
           Registrarse
         </button>
       </form>
