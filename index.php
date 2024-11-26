@@ -128,5 +128,4 @@ require_once 'config/database.php';
     </form>
   </main>
 </body>
-
 </html>

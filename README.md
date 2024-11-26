@@ -8,40 +8,40 @@ The design part of the page uses the Bootstrap framework.
 
 htdocs/
 ├── controllers/
-│   ├── UserController.php          # Controlador para la autenticación del usuario
-│   └── PortfolioController.php      # Controlador para gestionar el portafolio
+│   ├── UserController.php          
+│   └── PortfolioController.php     
 │
 ├── models/
-│   ├── User.php                     # Modelo de usuario (clase User)
-│   └── Portfolio.php                # Modelo de portafolio (clase Portfolio)
+│   ├── User.php                     
+│   └── Portfolio.php              
 │
 ├── views/
 │   ├── auth/
-│   │   ├── login.php                # Vista para la página de inicio de sesión
-│   │   └── register.php             # Vista para la página de registro
+│   │   ├── login.php                
+│   │   └── register.php             
 │   ├── portfolio/
-│   │   ├── portfolio_form.php       # Formulario de edición del portafolio
-│   │   └── view_portfolio.php       # Vista de visualización de portafolio
+│   │   ├── portfolio_form.php      
+│   │   └── view_portfolio.php      
 │   ├── templates/
-│   │   └── header.php               # Encabezado común para las vistas
+│   │   └── header.php              
 │   └── templates/
-│       └── footer.php               # Pie de página común para las vistas
+│       └── footer.php               
 │
 ├── assets/
 │   ├── css/
-│   │   └── sign-in.css              # Estilos CSS
+│   │   └── sign-in.css             
 │   ├── js/
-│   │   ├── color-modes.js           # Scripts de color
-│   │   └── main.js                  # Otros scripts de JavaScript
+│   │   ├── color-modes.js           
+│   │   └── main.js                  
 │   └── images/
-│       └── icons8-trifuerza.png     # Imágenes y favicon
+│       └── icons8-trifuerza.png     
 │
 ├── config/
-│   └── database.php                 # Configuración de la base de datos
+│   └── database.php                 
 │
-├── index.php                        # Página principal o punto de entrada
+├── index.php                       
 ├── favicon/
-│   └── favicon.ico                  # Icono de la página
+│   └── favicon.ico                  
 ├── sql/
-│   └── mi_portfolio.sql             # Script SQL para crear las tablas en la base de datos
-└── README.md                        # Documentación del proyecto
+│   └── mi_portfolio.sql            
+└── README.md                        
