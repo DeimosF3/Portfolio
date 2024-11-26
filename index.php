@@ -2,7 +2,7 @@
 require_once 'config/database.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
@@ -16,64 +16,30 @@ require_once 'config/database.php';
     rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
     crossorigin="anonymous" />
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      min-height: 100vh;
-      margin: 0;
-      background-color: rgba(211, 211, 211, 0.575);
-    }
-
-    header img {
-      margin-bottom: 20px;
-    }
-
-    .form-container {
-      width: 100%;
-      max-width: 400px;
-      padding: 15px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
+  <link rel="shortcut icon" href="assets/images/cropped-thecore-favico-192x192.webp" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/home.css">
+  <script src="./assets/js/form_functions.js"></script>
 </head>
 
 <body>
   <header>
-    <img
-      src="./assets/images/TheCore_banner.webp"
-      alt="Banner The Core School"
-      width="400"
-      height="200" />
+    <h1 class="big">¡Crea tu Currículum Vitae totalmente gratis!</h1>
   </header>
   <main class="form-container">
 
     <div id="buttons">
-      <h1 class="h3 mb-3 fw-normal">Bienvenido!</h1>
-      <button class="btn btn-primary w-100 py-2" onclick="showForm('loginForm')">
+      <h1 class="h3 mb-3 fw-bold text-uppercase">Empezar</h1>
+      <button id="loginButton" class="btn btn-primary w-100 py-2" onclick="showForm('loginForm')">
         Iniciar sesión
       </button>
-      <button class="btn btn-outline-secondary w-100 py-2 mt-3" onclick="showForm('registerForm')">
+      <button id="registerButton" class="btn btn-outline-secondary w-100 py-2 mt-3" onclick="showForm('registerForm')">
         Registrarse
       </button>
     </div>
 
 
     <form id="loginForm" action="views/auth/login.php" method="POST" class="hidden">
-      <h1 class="h3 mb-3 fw-normal">Por favor, inicie sesión</h1>
+      <h1 class="h3 mb-3 fw-bold text-uppercase">iniciar sesión</h1>
       <div class="form-floating">
         <input
           type="text"
@@ -113,16 +79,16 @@ require_once 'config/database.php';
         </label>
       </div>
       <button class="btn btn-primary w-100 py-2" type="submit">
-        Iniciar sesión
+        Continuar
       </button>
-      <button type="button" class="btn btn-outline-secondary w-100 py-2 mt-3" onclick="cancelForm()">
+      <button id="cancelButton1" type="button" class="btn btn-outline-secondary w-100 py-2 mt-3" onclick="cancelForm()">
         Cancelar
       </button>
     </form>
 
 
     <form id="registerForm" action="views/auth/register.php" method="POST" class="hidden">
-      <h1 class="h3 mb-3 fw-normal">Regístrate</h1>
+      <h1 class="h3 mb-3 fw-bold text-uppercase">Registrarse</h1>
       <div class="form-floating">
         <input
           type="text"
@@ -153,33 +119,14 @@ require_once 'config/database.php';
           required />
         <label for="registerPassword">Contraseña</label>
       </div>
-      <button class="btn btn-outline-secondary w-100 py-2" type="submit">
-        Regístrate
+      <button class="btn btn-primary w-100 py-2" type="submit">
+        Continuar
       </button>
-      <button type="button" class="btn btn-outline-secondary w-100 py-2 mt-3" onclick="cancelForm()">
+      <button id="cancelButton2" type="button" class="btn btn-outline-secondary w-100 py-2 mt-3" onclick="cancelForm()">
         Cancelar
       </button>
     </form>
   </main>
-
-  <script>
-    function showForm(formId) {
-
-      document.getElementById('buttons').classList.add('hidden');
-      document.getElementById('loginForm').classList.add('hidden');
-      document.getElementById('registerForm').classList.add('hidden');
-
-
-      document.getElementById(formId).classList.remove('hidden');
-    }
-
-    function cancelForm() {
-
-      document.getElementById('buttons').classList.remove('hidden');
-      document.getElementById('loginForm').classList.add('hidden');
-      document.getElementById('registerForm').classList.add('hidden');
-    }
-  </script>
 </body>
 
 </html>

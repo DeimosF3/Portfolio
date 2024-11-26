@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #0DE0D0, #BF2B18, #A05C8F, #4A83E0, #22C9D6, #1A9CA6, #FD6904, #8D56B8);
+  }
+
+  .form-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .big {
+    font-size: 80px;
+    margin-bottom: 5%;
+
+  }
+
+  .hidden {
+    display: none;
+  }

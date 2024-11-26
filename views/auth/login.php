@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {
     }
 } else {
     echo "No se encontró una cuenta con ese correo electrónico";
-    header("Location: ../../index.html");
+    header("Location: ../../index.php");
     exit();
 }
 
