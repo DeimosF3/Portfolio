@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
     $_SESSION['user_id'] = $row['id'];
 
     if (password_verify($password, $row['password'])) {
-        header("Location: ../../views/portfolio/portfolio_form.php");
+        header("Location: ../../views/portfolio/view_portfolio.php");
         exit();
     } else {
         echo "Contraseña incorrecta";
@@ -41,4 +41,3 @@ if ($result->num_rows > 0) {
 }
 
 $conn->close();
-?>

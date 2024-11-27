@@ -7,6 +7,11 @@ error_reporting(E_ALL);
 
 require_once '../../config/database.php';
 
+$database = new Database();
+$conn = $database->connect();
+
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $username = $_POST['username'] ?? '';
@@ -16,11 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-
-    $database = new Database();
-    $conn = $database->connect();
-
-
     if ($conn) {
 
         $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
@@ -29,13 +29,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':password', $hashed_password);
 
         if ($stmt->execute()) {
-          
-            $_SESSION['user_id'] = $conn->lastInsertId();
-            header("Location: ../../views/portfolio/portfolio_form.php");
-            exit();
+            $user_id = $conn->lastInsertId();
+
+            $porfavor = $conn->prepare("INSERT INTO portfolio (user_id, nombre, apellido, correo, puesto, perfil_personal, experiencia, foto) VALUES (:user_id, '', '', '', '', '', '', '')");
+            $porfavor->bindParam(':user_id', $user_id);
+            
+            if ($porfavor->execute()) {
+                $_SESSION['user_id'] = $user_id;
+                header("Location: ../../views/portfolio/edit.php");
+                exit();
+            } else {
+                echo "Erorr, por favor busque a dios";
+            }
         } else {
             echo "Error al registrar el usuario";
         }
+
+
+        
     } else {
         echo "No se pudo conectar a la base de datos";
     }
