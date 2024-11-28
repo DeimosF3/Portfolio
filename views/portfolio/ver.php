@@ -59,29 +59,44 @@ try {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <div class="text-center">
-        <h1>Portafolio de <?php echo $nombre . ' ' . $apellido; ?></h1>
-    <p><strong>Correo:</strong> <?php echo $correo; ?></p>
-    <p><strong>Puesto:</strong> <?php echo $puesto; ?></p>
-    <h2>Perfil Personal</h2>
-    <p><?php echo $perfil_personal; ?></p>
-
-    <h2>Experiencia</h2>
-    <p><?php echo $experiencia; ?></p>
-
-    <h2>Habilidades</h2>
-    <p><?php echo $habilidades; ?></p>
-
-    <h2>Educación</h2>
-    <p><?php echo $educacion; ?></p>
-
-    <?php if ($foto): ?>
-        <h2>Foto de Perfil</h2>
-        <img src="<?php echo $foto; ?>" alt="Foto de perfil">
-    <?php else: ?>
-        <p>No se ha cargado una foto de perfil.</p>
-    <?php endif; ?>
+    <div class="container mt-5">
+        <div class="text-center mb-4">
+            <h1 class="display-4">CV de <?php echo $nombre . ' ' . $apellido; ?></h1>
+            <p class="lead"><strong>Correo:</strong> <?php echo $correo; ?></p>
+            <p class="lead"><strong>Puesto:</strong> <?php echo $puesto; ?></p>
+        </div>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">Perfil Personal</h2>
+                <p class="card-text"><?php echo $perfil_personal; ?></p>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">Experiencia</h2>
+                <p class="card-text"><?php echo $experiencia; ?></p>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">Habilidades</h2>
+                <p class="card-text"><?php echo $habilidades; ?></p>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">Educación</h2>
+                <p class="card-text"><?php echo $educacion; ?></p>
+            </div>
+        </div>
+        <?php if ($foto): ?>
+            <div class="text-center">
+                <h2>Foto de Perfil</h2>
+                <img src="<?php echo $foto; ?>" alt="Foto de perfil" class="img-fluid rounded-circle">
+            </div>
+        <?php else: ?>
+            <p class="text-center">No se ha cargado una foto de perfil.</p>
+        <?php endif; ?>
     </div>
-    
 </body>
 </html>

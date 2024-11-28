@@ -39,6 +39,8 @@ $correo = $_POST['correo'];
 $puesto = $_POST['puesto'];
 $perfil_personal = $_POST['perfil_personal'];
 $experiencia = json_encode($_POST['experiencia']);
+$habilidades = $_POST['habilidades'];
+$educacion = $_POST['educacion'];
 
 
 $sql = "UPDATE portfolio SET nombre = :nombre, apellido = :apellido, correo = :correo, puesto = :puesto, perfil_personal = :perfil_personal, experiencia = :experiencia, habilidades = :habilidades, educacion = :educacion, foto = :foto WHERE user_id = :user_id";

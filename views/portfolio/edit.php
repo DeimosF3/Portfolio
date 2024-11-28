@@ -50,8 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo "Hubo un error al actualizar la imagen.";
         }
-    } else {
-        echo "No se cargó ningún archivo o ocurrió un error en la carga.";
     }
 }
 ?>
