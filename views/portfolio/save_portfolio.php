@@ -41,8 +41,7 @@ $perfil_personal = $_POST['perfil_personal'];
 $experiencia = json_encode($_POST['experiencia']);
 
 
-$sql = "UPDATE portfolio SET nombre = :nombre, apellido = :apellido, correo = :correo, puesto = :puesto, perfil_personal = :perfil_personal, experiencia = :experiencia, foto = :foto WHERE user_id = :user_id";
-
+$sql = "UPDATE portfolio SET nombre = :nombre, apellido = :apellido, correo = :correo, puesto = :puesto, perfil_personal = :perfil_personal, experiencia = :experiencia, habilidades = :habilidades, educacion = :educacion, foto = :foto WHERE user_id = :user_id";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':user_id', $user_id);
 $stmt->bindParam(':nombre', $nombre);
@@ -51,16 +50,17 @@ $stmt->bindParam(':correo', $correo);
 $stmt->bindParam(':puesto', $puesto);
 $stmt->bindParam(':perfil_personal', $perfil_personal);
 $stmt->bindParam(':experiencia', $experiencia);
+$stmt->bindParam(':habilidades', $habilidades);
+$stmt->bindParam(':educacion', $educacion);
 $stmt->bindParam(':foto', $foto, PDO::PARAM_LOB); 
-
 if ($stmt->execute()) {
     echo "Portafolio guardado correctamente";
-    echo $experiencia;
     header("Location: ../../views/portfolio/view_portfolio.php");
     exit();
 } else {
     echo "Error al guardar portafolio: " . $stmt->errorInfo()[2];
 }
+$conn = null;
 
 $conn = null;
 ?>
