@@ -12,8 +12,6 @@ require_once '../../config/database.php';
 $database = new Database();
 $conn = $database->connect();
 
-// Simulando datos iniciales del portafolio desde la base de datos
-// Puedes remplazarlo con una consulta real
 $portfolio = [
     'foto' => 'foto',
     'nombre' => 'Tu nombre',
@@ -29,23 +27,22 @@ $portfolio = [
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Verificar si el archivo de imagen está cargado correctamente
+    
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-        // Obtener los datos binarios de la imagen
+       
         $imageData = file_get_contents($_FILES['image']['tmp_name']);
 
-        // Preparar la consulta SQL
+        
         $sql = "UPDATE portfolio SET foto = :foto WHERE user_id = :user_id";
 
-        // Preparar la sentencia
+        
         $stmt = $conn->prepare($sql);
 
-        // Vincular los parámetros
-        // Utilizando PDO::PARAM_LOB para manejar datos binarios (imagen)
+        
         $stmt->bindParam(':foto', $imageData, PDO::PARAM_LOB);
         $stmt->bindParam(':user_id', $_POST['user_id'], PDO::PARAM_INT);
 
-        // Ejecutar la consulta
+      
         if ($stmt->execute()) {
             echo "La imagen se actualizó correctamente.";
         } else {
@@ -95,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
         <h2 class="text-center mb-4">Editar Mi Portafolio</h2>
 
-        <!-- Detalles personales -->
+        
         <form action="save_portfolio.php" method="POST" enctype="multipart/form-data">
             <div class="mb-4 text-center">
                 <label for="foto" class="form-label">Subir foto</label>
@@ -120,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <!-- Experiencia laboral -->
+        
             <h4 class="mt-4">Experiencia Laboral</h4>
             <div id="experiencia-laboral">
                 <?php foreach ($portfolio['experiencia'] as $index => $exp): ?>
@@ -131,13 +128,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <button type="button" class="btn btn-primary btn-sm" id="agregar-experiencia">Agregar experiencia</button>
 
-            <!-- Perfil personal -->
+          
             <h4 class="mt-4">Perfil Personal</h4>
             <div class="mb-3">
                 <textarea class="form-control" name="perfil_personal" rows="4"><?= htmlspecialchars($portfolio['perfil_personal']) ?></textarea>
             </div>
 
-            <!-- Botones -->
+          
             <div class="d-flex justify-content-between mt-4">
                 <button type="submit" class="btn btn-success">Guardar Cambios</button>
                 <a href="logout.php" class="btn btn-danger">Cerrar Sesión</a>

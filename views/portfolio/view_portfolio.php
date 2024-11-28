@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Verifica si el usuario está logeado
 // if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 //     header('Location: login.php'); // Redirige a la página de inicio de sesión si no está logeado
 //     exit;
@@ -9,14 +8,14 @@ session_start();
 
 require_once '../../config/database.php';
 
-// Crear instancia de la base de datos
+
 $database = new Database();
 $conn = $database->connect();
 
-// Recuperar el user_id de la sesión
-$user_id = $_SESSION['user_id']; // Suponemos que el `user_id` está en la sesión después del login
 
-// Recuperar los datos del portafolio usando PDO
+$user_id = $_SESSION['user_id']; 
+
+
 $sql = "SELECT nombre, apellido, correo, puesto, perfil_personal, experiencia, foto FROM portfolio WHERE user_id = :user_id";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
@@ -28,7 +27,7 @@ if (!$portfolio) {
     header("Location: view_portfolio.php");
 }
 
-$conn = null; // Cierra la conexión con la base de datos
+$conn = null; 
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +69,7 @@ $conn = null; // Cierra la conexión con la base de datos
     <div class="container" id="imprimir-pdf">
         <h1 class="text-center mb-4">Mi Portafolio</h1>
 
-        <!-- Foto de perfil -->
+       
         <div class="text-center">
             <?php if (!empty($portfolio['foto'])): ?>
                 <img src="mostrar_imagen.php" alt="Foto de perfil" class="profile-img">
@@ -79,16 +78,16 @@ $conn = null; // Cierra la conexión con la base de datos
             <?php endif; ?>
         </div>
 
-        <!-- Información personal -->
+        
         <h2 class="text-center"><?= htmlspecialchars($portfolio['nombre']) ?> <?= htmlspecialchars($portfolio['apellido']) ?></h2>
         <p class="text-center text-muted"><?= htmlspecialchars($portfolio['puesto']) ?></p>
         <p class="text-center"><?= htmlspecialchars($portfolio['correo']) ?></p>
 
-        <!-- Perfil personal -->
+        
         <h4 class="mt-4">Perfil Personal</h4>
         <p><?= nl2br(htmlspecialchars($portfolio['perfil_personal'])) ?></p>
 
-        <!-- Experiencia laboral -->
+        
         <h4 class="mt-4">Experiencia Laboral</h4>
         <?php
         $experiencias = json_decode($portfolio['experiencia'], true);
@@ -112,24 +111,24 @@ $conn = null; // Cierra la conexión con la base de datos
 
     <script>
         function generarPDF() {
-            // Selecciona el elemento HTML que deseas convertir en PDF
+           
             const elemento = document.getElementById('imprimir-pdf');
 
-            // Genera el PDF usando html2pdf.js
+            
             html2pdf()
                 .from(elemento)
                 .set({
-                    margin: 10, // Márgenes del PDF
-                    filename: 'documento.pdf', // Nombre del archivo
+                    margin: 10, 
+                    filename: 'documento.pdf', 
                     html2canvas: {
                         scale: 2
-                    }, // Calidad de la captura (2 es buena calidad)
+                    }, 
                     jsPDF: {
                         format: 'a4',
                         orientation: 'portrait'
-                    } // Tamaño y orientación del PDF
+                    } 
                 })
-                .save(); // Guarda el PDF automáticamente
+                .save(); 
         }
     </script>
 </body>
