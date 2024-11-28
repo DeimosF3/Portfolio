@@ -29,15 +29,6 @@ if ($stmt->rowCount() > 0) {
         // Establecer el encabezado correcto para la imagen
         header("Content-Type: image/png"); // Cambiar a image/png si usas PNG
         echo $row['foto']; // Enviar la imagen binaria al navegador
-    } else {
-        // Si no hay imagen, mostrar una por defecto
-        header("Content-Type: image/gif");
-        echo file_get_contents("https://c.tenor.com/Zs3To_SQKdUAAAAd/tenor.gif"); // Imágenes por defecto en caso de que no haya foto
     }
-} else {
-    // Si no se encuentra el usuario o la imagen, mostrar la imagen por defecto
-    header("Content-Type: image/gif");
-    echo file_get_contents("https://c.tenor.com/Zs3To_SQKdUAAAAd/tenor.gif");
 }
-
 $conn = null;

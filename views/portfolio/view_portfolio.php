@@ -40,6 +40,8 @@ $conn = null; // Cierra la conexión con la base de datos
     <title>Mi Portafolio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
     <style>
         body {
             background-color: #f9f9f9;
@@ -65,16 +67,15 @@ $conn = null; // Cierra la conexión con la base de datos
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="imprimir-pdf">
         <h1 class="text-center mb-4">Mi Portafolio</h1>
 
         <!-- Foto de perfil -->
         <div class="text-center">
-            <!-- <img src="mostrar_imagen.php" alt="Foto de perfil" class="profile-img"> -->
             <?php if (!empty($portfolio['foto'])): ?>
                 <img src="mostrar_imagen.php" alt="Foto de perfil" class="profile-img">
             <?php else: ?>
-                <img src="https://c.tenor.com/Zs3To_SQKdUAAAAd/tenor.gif" alt="Foto de perfil" class="profile-img">
+                <img src="../../assets/images/cropped-thecore-favico-192x192.webp" alt="Foto de perfil" class="profile-img">
             <?php endif; ?>
         </div>
 
@@ -99,10 +100,38 @@ $conn = null; // Cierra la conexión con la base de datos
             <p>No se ha agregado experiencia laboral.</p>
         <?php endif; ?>
     </div>
+    <div class="text-center mt-4">
+        <form action="./edit.php" method="POST" class="d-inline-block me-2">
+            <button class="btn btn-success rounded-pill px-3" type="submit">Editar</button>
+        </form>
+        <form action="" class="d-inline-block">
+            <button class="btn btn-warning rounded-pill px-3" type="button">Añadir favoritos</button>
+        </form>
+        <button onclick="generarPDF()" class="btn btn-danger rounded-pill px-3" type="button">Generar PDF</button>
+    </div>
 
-    <form action="./edit.php" method="POST">
-        <button class="btn btn-success rounded-pill px-3" type="submit">Editar coso</button>
-    </form>
+    <script>
+        function generarPDF() {
+            // Selecciona el elemento HTML que deseas convertir en PDF
+            const elemento = document.getElementById('imprimir-pdf');
+
+            // Genera el PDF usando html2pdf.js
+            html2pdf()
+                .from(elemento)
+                .set({
+                    margin: 10, // Márgenes del PDF
+                    filename: 'documento.pdf', // Nombre del archivo
+                    html2canvas: {
+                        scale: 2
+                    }, // Calidad de la captura (2 es buena calidad)
+                    jsPDF: {
+                        format: 'a4',
+                        orientation: 'portrait'
+                    } // Tamaño y orientación del PDF
+                })
+                .save(); // Guarda el PDF automáticamente
+        }
+    </script>
 </body>
 
 </html>

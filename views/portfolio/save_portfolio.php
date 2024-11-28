@@ -19,8 +19,10 @@ $conn = $database->connect();
 
 
 // Comprobar conexión
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+try {
+    $conn = $database->connect();
+} catch (PDOException $e) {
+    die("Error de conexión: " . $e->getMessage());
 }
 
 // Verifica si se subió el archivo
@@ -62,5 +64,5 @@ if ($stmt->execute()) {
     echo "Error al guardar portafolio: " . $stmt->errorInfo()[2];
 }
 
-$conn->close();
+$conn = null;
 ?>
