@@ -1,9 +1,11 @@
 <?php
 session_start();
-// if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//     header('Location: ../../index.php'); // Redirige si no está logeado
-//     exit;
-// }
+
+if (!isset($_SESSION['user_id'])) {
+    echo "No has iniciado sesión, vuelve a la pagina de inicio";
+    // header("Location: ../../index.php");
+    exit();
+}
 
 require_once '../../config/database.php';
 
